@@ -6,14 +6,20 @@ class MyComponent extends React.Component {
     age: 22,
     address: "Hue",
   };
-  handleClick(event) {
+  handleClick = (event) => {
     console.log("click me");
-    console.log("My name is", this.state.name);
-  }
+    // console.log("My name is", this.state.name);
+    //setState
+    this.setState({
+      name: "Tuan Le Phu",
+      age: Math.floor(Math.random() * 100 + 1),
+    });
+  };
 
   handleMouseOver(event) {
     console.log(event.target);
     console.log(event);
+    console.log("I am", this.state.age, " years old");
   }
 
   //JSX
@@ -25,7 +31,13 @@ class MyComponent extends React.Component {
         <div>
           <button onClick={this.handleClick}>Click me</button>
           <br></br>
-          <button onMouseOver={this.handleMouseOver}>Hover</button>
+          <button
+            onMouseOver={(event) => {
+              this.handleMouseOver(event);
+            }}
+          >
+            Hover
+          </button>
         </div>
       </div>
     );
