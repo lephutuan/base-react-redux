@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./MyInfo.scss";
 import logo from "../logo.svg";
 // class MyInfo extends React.Component {
@@ -41,6 +41,14 @@ const MyInfo = (props) => {
   const handleShowHideListUser = () => {
     setIsShowHideListUser(!isShowHideListUser);
   };
+  useEffect(() => {
+    console.log("Use effect");
+    if (listUsers.length === 0) {
+      alert("List user is empty");
+    }
+  }, [listUsers]);
+  console.log("Render");
+
   return (
     <div className="my-info-container">
       <div
