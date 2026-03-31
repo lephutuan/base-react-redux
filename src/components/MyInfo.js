@@ -2,14 +2,19 @@ import React from "react";
 
 class MyInfo extends React.Component {
   render() {
-    console.log(this.props);
     //Destructuring
-    const { name, age } = this.props;
+    const { listUsers } = this.props;
     return (
       <div>
-        My name is {this.props.name}
-        <br></br>
-        Age: {age}
+        {listUsers.map((user) => {
+          return (
+            <div key={user.id}>
+              <div>Name: {user.name},</div>
+              <div>Age: {user.age}</div>
+              <hr></hr>
+            </div>
+          );
+        })}
       </div>
     );
   }
