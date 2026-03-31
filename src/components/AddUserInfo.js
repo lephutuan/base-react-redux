@@ -42,7 +42,9 @@ class AddUserInfo extends React.Component {
   //JSX
   render() {
     return (
-      <div>
+      //fragment <></> OR <React.Fragment></React.Fragment>
+      //  -> khong phai tuan thu viec can 1 div bao quanh
+      <>
         My name is {this.state.name}, I am {this.state.age} years old
         <div>
           {/* <button onClick={this.handleClick}>Click me</button> */}
@@ -62,7 +64,7 @@ class AddUserInfo extends React.Component {
             <button>Submit</button>
           </form>
         </div>
-      </div>
+      </>
     );
   }
 }
