@@ -2,15 +2,32 @@ import React from "react";
 import "./MyInfo.scss";
 import logo from "../logo.svg";
 class MyInfo extends React.Component {
-  state = {
-    isShowHide: true,
-  };
+  constructor(props) {
+    console.log(">>>>>>>> Call me constructor");
+    super(props);
+    this.state = {
+      isShowHide: true,
+    };
+  }
   handleShowHide = () => {
     this.setState({
       isShowHide: !this.state.isShowHide,
     });
   };
+  componentDidMount() {
+    console.log(">>>>>>>> Call me componentDidMount");
+  }
+  componentDidUpdate = (prevProps, prevState) => {
+    console.log(">>>>>>>> Call me componentDidUpdate");
+    if (prevState.listUsers !== this.state.listUsers) {
+      if (this.state.listUsers.length === 5) {
+        console.log(">>>>>>>> ComponentDidUpdate with condition");
+        alert("You have 5 users in the list");
+      }
+    }
+  };
   render() {
+    console.log(">>>>>>>> Call me render");
     //Destructuring
     const { listUsers } = this.props;
     return (
