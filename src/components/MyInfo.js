@@ -1,4 +1,5 @@
-import React, { use } from "react";
+import React from "react";
+import "./MyInfo.scss";
 
 class MyInfo extends React.Component {
   state = {
@@ -13,7 +14,7 @@ class MyInfo extends React.Component {
     //Destructuring
     const { listUsers } = this.props;
     return (
-      <div>
+      <div className="my-info-container">
         <div>
           <p
             onClick={() => {
