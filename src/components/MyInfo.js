@@ -1,71 +1,65 @@
 import React from "react";
 import "./MyInfo.scss";
 import logo from "../logo.svg";
-class MyInfo extends React.Component {
-  constructor(props) {
-    console.log(">>>>>>>> Call me constructor");
-    super(props);
-    this.state = {
-      isShowHide: true,
-    };
-  }
-  handleShowHide = () => {
-    this.setState({
-      isShowHide: !this.state.isShowHide,
-    });
-  };
-  componentDidMount() {
-    console.log(">>>>>>>> Call me componentDidMount");
-  }
-  componentDidUpdate = (prevProps, prevState) => {
-    console.log(">>>>>>>> Call me componentDidUpdate");
-    if (prevState.listUsers !== this.state.listUsers) {
-      if (this.state.listUsers.length === 5) {
-        console.log(">>>>>>>> ComponentDidUpdate with condition");
-        alert("You have 5 users in the list");
-      }
-    }
-  };
-  render() {
-    console.log(">>>>>>>> Call me render");
-    //Destructuring
-    const { listUsers } = this.props;
-    return (
-      <div className="my-info-container">
-        {/* <img src={logo} /> */}
+// class MyInfo extends React.Component {
+//   render() {
+//     //Destructuring
+//     const { listUsers } = this.props;
+//     return (
+//       <div className="my-info-container">
+//         {this.state.isShowHide === true && (
+//           <div>
+//             {listUsers.map((user) => {
+//               return (
+//                 <div key={user.id} className={+user.age > 20 ? "green" : "red"}>
+//                   <div>Name: {user.name},</div>
+//                   <div>Age: {user.age}</div>
+//                   <button
+//                     onClick={() => {
+//                       this.props.handleDeleteUser(user.id);
+//                     }}
+//                   >
+//                     Delete
+//                   </button>
+//                   <hr></hr>
+//                 </div>
+//               );
+//             })}
+//           </div>
+//         )}
+//       </div>
+//     );
+//   }
+// }
+/**Stateless khi không cần state(quản lý trạng thái)
+ * Stateful khi cần state(quản lý trạng thái)
+ */
+//React Hook
+const MyInfo = (props) => {
+  const { listUsers } = props;
+  return (
+    <div className="my-info-container">
+      {true && (
         <div>
-          <p
-            onClick={() => {
-              this.handleShowHide();
-            }}
-          >
-            {this.state.isShowHide === true
-              ? "Hide list users"
-              : "Show list users"}
-          </p>
+          {listUsers.map((user) => {
+            return (
+              <div key={user.id} className={+user.age > 20 ? "green" : "red"}>
+                <div>Name: {user.name},</div>
+                <div>Age: {user.age}</div>
+                <button
+                  onClick={() => {
+                    props.handleDeleteUser(user.id);
+                  }}
+                >
+                  Delete
+                </button>
+                <hr></hr>
+              </div>
+            );
+          })}
         </div>
-        {this.state.isShowHide === true && (
-          <div>
-            {listUsers.map((user) => {
-              return (
-                <div key={user.id} className={+user.age > 20 ? "green" : "red"}>
-                  <div>Name: {user.name},</div>
-                  <div>Age: {user.age}</div>
-                  <button
-                    onClick={() => {
-                      this.props.handleDeleteUser(user.id);
-                    }}
-                  >
-                    Delete
-                  </button>
-                  <hr></hr>
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
-    );
-  }
-}
+      )}
+    </div>
+  );
+};
 export default MyInfo;
