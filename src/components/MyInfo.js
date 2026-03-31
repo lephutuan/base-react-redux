@@ -1,6 +1,6 @@
 import React from "react";
 import "./MyInfo.scss";
-
+import logo from "../logo.svg";
 class MyInfo extends React.Component {
   state = {
     isShowHide: true,
@@ -15,6 +15,7 @@ class MyInfo extends React.Component {
     const { listUsers } = this.props;
     return (
       <div className="my-info-container">
+        <img src={logo} />
         <div>
           <p
             onClick={() => {
