@@ -15,7 +15,7 @@ class MyInfo extends React.Component {
     const { listUsers } = this.props;
     return (
       <div className="my-info-container">
-        <img src={logo} />
+        {/* <img src={logo} /> */}
         <div>
           <p
             onClick={() => {
@@ -34,6 +34,13 @@ class MyInfo extends React.Component {
                 <div key={user.id} className={+user.age > 20 ? "green" : "red"}>
                   <div>Name: {user.name},</div>
                   <div>Age: {user.age}</div>
+                  <button
+                    onClick={() => {
+                      this.props.handleDeleteUser(user.id);
+                    }}
+                  >
+                    Delete
+                  </button>
                   <hr></hr>
                 </div>
               );
