@@ -1,71 +1,97 @@
-import React from "react";
+import React, { useState } from "react";
 
-class AddUserInfo extends React.Component {
-  state = {
-    name: "",
-    age: "",
-  };
-  // handleClick = (event) => {
-  //   console.log("click me");
-  //   // console.log("My name is", this.state.name);
-  //   //setState
-  //   this.setState({
-  //     name: "Tuan Le Phu",
-  //     age: Math.floor(Math.random() * 100 + 1),
-  //   });
-  // };
+// class AddUserInfo extends React.Component {
+//   state = {
+//     name: "",
+//     age: "",
+//   };
+//   handleOnChangeInput = (event) => {
+//     this.setState({
+//       name: event.target.value,
+//     });
+//   };
+//   handleOnChangeAge = (event) => {
+//     this.setState({
+//       age: event.target.value,
+//     });
+//   };
 
-  // handleMouseOver(event) {
-  //   console.log(event.target);
-  //   console.log(event);
-  //   console.log("I am", this.state.age, " years old");
-  // }
-  handleOnChangeInput = (event) => {
-    this.setState({
-      name: event.target.value,
-    });
+//   handleOnSubmitForm = (event) => {
+//     event.preventDefault();
+//     this.props.handleAddUser({
+//       id: Math.floor(Math.random() * 100 + 1) + "-random",
+//       name: this.state.name,
+//       age: this.state.age,
+//     });
+//   };
+//   //JSX
+//   render() {
+//     return (
+//       //fragment <></> OR <React.Fragment></React.Fragment>
+//       //  -> khong phai tuan thu viec can 1 div bao quanh
+//       <>
+//         My name is {this.state.name}, I am {this.state.age} years old
+//         <div>
+//           {/* <button onClick={this.handleClick}>Click me</button> */}
+//           <form onSubmit={(event) => this.handleOnSubmitForm(event)}>
+//             <label>Name:</label>
+//             <input
+//               value={this.state.name}
+//               type="text"
+//               onChange={(event) => this.handleOnChangeInput(event)}
+//             />
+//             <label>Age:</label>
+//             <input
+//               value={this.state.age}
+//               type="text"
+//               onChange={(event) => this.handleOnChangeAge(event)}
+//             />
+//             <button>Submit</button>
+//           </form>
+//         </div>
+//       </>
+//     );
+//   }
+// }
+const AddUserInfo = (props) => {
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const handleOnChangeInput = (event) => {
+    setName(event.target.value);
   };
-  handleOnChangeAge = (event) => {
-    this.setState({
-      age: event.target.value,
-    });
+  const handleOnChangeAge = (event) => {
+    setAge(event.target.value);
   };
 
-  handleOnSubmitForm = (event) => {
+  const handleOnSubmitForm = (event) => {
     event.preventDefault();
-    this.props.handleAddUser({
+    props.handleAddUser({
       id: Math.floor(Math.random() * 100 + 1) + "-random",
-      name: this.state.name,
-      age: this.state.age,
+      name: name,
+      age: age,
     });
   };
-  //JSX
-  render() {
-    return (
-      //fragment <></> OR <React.Fragment></React.Fragment>
-      //  -> khong phai tuan thu viec can 1 div bao quanh
-      <>
-        My name is {this.state.name}, I am {this.state.age} years old
-        <div>
-          {/* <button onClick={this.handleClick}>Click me</button> */}
-          <form onSubmit={(event) => this.handleOnSubmitForm(event)}>
-            <label>Name:</label>
-            <input
-              value={this.state.name}
-              type="text"
-              onChange={(event) => this.handleOnChangeInput(event)}
-            />
-            <label>Age:</label>
-            <input
-              value={this.state.age}
-              type="text"
-              onChange={(event) => this.handleOnChangeAge(event)}
-            />
-            <button>Submit</button>
-          </form>
-        </div>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      My name is {name}, I am {age} years old
+      <div>
+        <form onSubmit={(event) => handleOnSubmitForm(event)}>
+          <label>Name:</label>
+          <input
+            value={name}
+            type="text"
+            onChange={(event) => handleOnChangeInput(event)}
+          />
+          <label>Age:</label>
+          <input
+            value={age}
+            type="text"
+            onChange={(event) => handleOnChangeAge(event)}
+          />
+          <button>Submit</button>
+        </form>
+      </div>
+    </>
+  );
+};
 export default AddUserInfo;
