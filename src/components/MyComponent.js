@@ -1,5 +1,5 @@
 import React from "react";
-import UserInfo from "./UserInfo";
+import AddUserInfo from "./AddUserInfo";
 import MyInfo from "./MyInfo";
 class MyComponent extends React.Component {
   //State là một object, nó sẽ lưu trữ tất cả các giá trị mà component cần để render ra giao diện
@@ -10,11 +10,16 @@ class MyComponent extends React.Component {
       { id: 3, name: "Phu", age: 52 },
     ],
   };
+  handleAddUser = (userObj) => {
+    this.setState({
+      listUsers: [userObj, ...this.state.listUsers],
+    });
+  };
   render() {
     // const myInfo = ["ab", "a", "cd"];
     return (
       <div>
-        <UserInfo />
+        <AddUserInfo handleAddUser={this.handleAddUser} />
         <MyInfo listUsers={this.state.listUsers} />
       </div>
     );
