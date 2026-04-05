@@ -7,6 +7,19 @@
         }
     }
 
-    .admin-content {}
+    .admin-content {
+        width: 100%;
+
+        .admin-header {
+            height: 40px;
+            border: 1px solid red;
+
+        }
+
+        .admin-main {
+            height: 40px;
+            border: 1px solid green;
+        }
+    }
 
 }
