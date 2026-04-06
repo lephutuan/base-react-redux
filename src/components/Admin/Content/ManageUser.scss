@@ -1,4 +1,22 @@
+.manage-user-container {
+    padding: 10px;
+
+    .user-content {
+        .btn-add-new {
+            margin: 15px 0px;
+        }
+    }
+
+    .title {
+        font-size  : 20px;
+        font-weight: 600;
+    }
+}
+
+
 .modal-add-user {
+
+
     .label-upload {
         gap             : 5px;
         display         : flex;
@@ -9,6 +27,7 @@
         padding         : 3px 10px;
         border-radius   : 5px;
         border          : none;
+
         &:hover {
             background-color: #ddd;
         }
