@@ -5,7 +5,7 @@ import { FcPlus } from "react-icons/fc";
 import { toast } from "react-toastify";
 import { postCreateNewUser } from "../../../services/apiService";
 
-const CreateUserModal = (props) => {
+const ModalCreateUser = (props) => {
   const { show, setShow } = props;
 
   const handleClose = () => {
@@ -54,6 +54,7 @@ const CreateUserModal = (props) => {
     if (data && data.EC === 0) {
       toast.success(data.EM);
       handleClose();
+      await props.fetchAllUsers();
     }
     if (data && data.EC !== 0) {
       toast.error(data.EM);
@@ -147,4 +148,4 @@ const CreateUserModal = (props) => {
     </>
   );
 };
-export default CreateUserModal;
+export default ModalCreateUser;
