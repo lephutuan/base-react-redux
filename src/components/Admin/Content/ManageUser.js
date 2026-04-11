@@ -5,11 +5,16 @@ import { useEffect, useState } from "react";
 import { getAllUsers } from "../../../services/apiService";
 import TableUser from "./TableUser";
 import ModalUpdateUser from "./ModalUpdateUser";
+import ModalViewUser from "./ModalViewUser";
+import ModalDeleteUser from "./ModalDeleteUser";
 
 const ManageUser = (props) => {
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
   const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
   const [dataUpdate, setDataUpdate] = useState({});
+  const [showModalViewUser, setShowModalViewUser] = useState(false);
+  const [showModalDelete, setShowModalDelete] = useState(false);
+  const [dataDelete, setDataDelete] = useState({});
   const [listUsers, setListUsers] = useState([]);
   useEffect(() => {
     fetchAllUsers();
@@ -27,7 +32,15 @@ const ManageUser = (props) => {
   };
   const resetUpdateData = () => {
     setDataUpdate({});
-  }
+  };
+  const handleClickBtnView = (user) => {
+    setDataUpdate(user);
+    setShowModalViewUser(true);
+  };
+  const handleClickBtnDelete = (user) => {
+    setDataDelete(user);
+    setShowModalDelete(true);
+  };
   return (
     <div className="manage-user-container">
       <div className="title">Manage User</div>
@@ -44,6 +57,8 @@ const ManageUser = (props) => {
           <TableUser
             listUsers={listUsers}
             handleClickBtnUpdate={handleClickBtnUpdate}
+            handleClickBtnView={handleClickBtnView}
+            handleClickBtnDelete={handleClickBtnDelete}
           />
         </div>
       </div>
@@ -58,6 +73,17 @@ const ManageUser = (props) => {
         fetchAllUsers={fetchAllUsers}
         dataUpdate={dataUpdate}
         resetUpdateData={resetUpdateData}
+      />
+      <ModalViewUser
+        show={showModalViewUser}
+        setShow={setShowModalViewUser}
+        dataUpdate={dataUpdate}
+      />
+      <ModalDeleteUser
+        show={showModalDelete}
+        setShow={setShowModalDelete}
+        dataDelete={dataDelete}
+        fetchAllUsers={fetchAllUsers}
       />
     </div>
   );
